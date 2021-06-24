@@ -6,22 +6,32 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MercadoPago.Config;
+using MercadoPago.Resource.Preference;
 
 namespace fotoTeca.Controllers
 {
 
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
     public class ProductController : ControllerBase
     {
         private readonly ProductDAL _repository1;
+        //private readonly MercadoPagoConfig.AccessToken = "PROD_ACCESS_TOKEN";
 
         public ProductController(ProductDAL repository1)
         {
 
             _repository1 = repository1 ?? throw new ArgumentNullException(nameof(repository1));
 
+        }
+        [HttpPost("/StoreOrder", Name = "StoreOrder")]
+        public async Task<Preference> Post1([FromBody] ProductOrderRequeride req)
+
+        {
+            return await _repository1.StoreOrder(req);
         }
 
         [HttpGet("/GetProduct")]

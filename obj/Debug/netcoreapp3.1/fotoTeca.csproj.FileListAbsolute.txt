@@ -83,9 +83,10 @@ C:\Users\User\source\repos\Fototeca\fotoTeca\bin\Debug\netcoreapp3.1\fotoTeca.ru
 C:\Users\User\source\repos\Fototeca\fotoTeca\bin\Debug\netcoreapp3.1\fotoTeca.runtimeconfig.dev.json
 C:\Users\User\source\repos\Fototeca\fotoTeca\bin\Debug\netcoreapp3.1\fotoTeca.dll
 C:\Users\User\source\repos\Fototeca\fotoTeca\bin\Debug\netcoreapp3.1\fotoTeca.pdb
-C:\Users\User\source\repos\Fototeca\fotoTeca\obj\Debug\netcoreapp3.1\fotoTeca.csproj.CoreCompileInputs.cache
-C:\Users\User\source\repos\Fototeca\fotoTeca\obj\Debug\netcoreapp3.1\fotoTeca.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\User\source\repos\Fototeca\fotoTeca\obj\Debug\netcoreapp3.1\fotoTeca.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\User\source\repos\Fototeca\fotoTeca\obj\Debug\netcoreapp3.1\fotoTeca.dll
 C:\Users\User\source\repos\Fototeca\fotoTeca\obj\Debug\netcoreapp3.1\fotoTeca.pdb
 C:\Users\User\source\repos\Fototeca\fotoTeca\obj\Debug\netcoreapp3.1\fotoTeca.genruntimeconfig.cache
+C:\Users\User\source\repos\Fototeca\fotoTeca\obj\Debug\netcoreapp3.1\fotoTeca.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\Fototeca\fotoTeca\obj\Debug\netcoreapp3.1\fotoTeca.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\User\source\repos\Fototeca\fotoTeca\obj\Debug\netcoreapp3.1\fotoTeca.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\User\source\repos\Fototeca\fotoTeca\bin\Debug\netcoreapp3.1\MercadoPago.dll

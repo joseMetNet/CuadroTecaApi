@@ -78,6 +78,10 @@
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.2, )"
+            },
+            "mercadopago-sdk": {
+              "target": "Package",
+              "version": "[2.0.0, )"
             }
           },
           "imports": [
