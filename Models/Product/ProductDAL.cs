@@ -72,18 +72,12 @@ namespace fotoTeca.Models.Product
                         {
                          
                         },
-                    };
-
-                    var request2 = new PreferenceRequest
-                    {
-                        // ...
                         BackUrls = new PreferenceBackUrlsRequest
                         {
                             Success = "http://localhost:4200/#/home-colombia",
                             Failure = "http://localhost:4200/#/home-colombia",
                             Pending = "http://localhost:4200/#/home-colombia",
-                        },
-                        AutoReturn = "approved",
+                        }
                     };
 
                     // Crea la preferencia usando el client

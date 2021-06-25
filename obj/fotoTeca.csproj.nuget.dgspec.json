@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\Fototeca\\fotoTeca\\fotoTeca.csproj": {}
+    "C:\\Users\\lordu\\Documents\\development\\.net\\metnet\\cuadroteca\\fotoTeca.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\Fototeca\\fotoTeca\\fotoTeca.csproj": {
+    "C:\\Users\\lordu\\Documents\\development\\.net\\metnet\\cuadroteca\\fotoTeca.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\Fototeca\\fotoTeca\\fotoTeca.csproj",
+        "projectUniqueName": "C:\\Users\\lordu\\Documents\\development\\.net\\metnet\\cuadroteca\\fotoTeca.csproj",
         "projectName": "fotoTeca",
-        "projectPath": "C:\\Users\\User\\source\\repos\\Fototeca\\fotoTeca\\fotoTeca.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\Fototeca\\fotoTeca\\obj\\",
+        "projectPath": "C:\\Users\\lordu\\Documents\\development\\.net\\metnet\\cuadroteca\\fotoTeca.csproj",
+        "packagesPath": "C:\\Users\\lordu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\lordu\\Documents\\development\\.net\\metnet\\cuadroteca\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lordu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -29,6 +26,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -40,6 +38,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "EntityFramework": {
               "target": "Package",
@@ -102,7 +101,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }
