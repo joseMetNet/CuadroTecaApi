@@ -11,7 +11,7 @@ namespace fotoTeca.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class GiftCardController : ControllerBase
     {
         private readonly GiftCardDAL _repository1;
@@ -42,8 +42,20 @@ namespace fotoTeca.Controllers
         {
             return await _repository1.GetGiftCard(idGiftCard);
         }
+
+        [HttpGet("/GetGiftCardActive")]
+        public async Task<List<GiftCarResponse2>> get3()
+        {
+            return await _repository1.GetGiftCardActive();
+        }
+
+        [HttpGet("/GetSalesGiftCard")]
+        public async Task<List<SalesGiftCardResponse>> get4()
+        {
+            return await _repository1.GetSalesGiftCard();
+        }
         //DELETE------------------------------------------------------------------------------------------------
-        [HttpDelete("DeleteClient/{idGiftCard}", Name = "DeleteClient")]
+        [HttpDelete("DeleteGiftCard/{idGiftCard}", Name = "DeleteClient")]
         public async Task Delete(int idGiftCard)
 
         {

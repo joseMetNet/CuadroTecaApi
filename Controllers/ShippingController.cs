@@ -13,7 +13,7 @@ namespace fotoTeca.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ShippingController : ControllerBase
     {
         private readonly ShippingDAL _repository1;
@@ -36,6 +36,16 @@ namespace fotoTeca.Controllers
         {
             return await _repository1.storeOrUpdateShippingAddress(product);
         }
+        //[HttpPost("/storeOrUpdateShippingUserGiftCard", Name = "storeOrUpdateShippingUserGiftCard")]
+        //public async Task<List<storeOrUpdateShippingUserGiftCardResponse>> Post3(ShippingUserGiftCardRequeride product)
+        //{
+        //    return await _repository1.storeOrUpdateShippingUserGiftCard(product);
+        //}
+        //[HttpPost("/storeOrUpdateShippingAddressGiftCard", Name = "storeOrUpdateShippingAddressGiftCard")]
+        //public async Task<List<ShippingAddressGiftCardResponse>> Post4(ShippingAddressGiftCardRequeride product)
+        //{
+        //    return await _repository1.storeOrUpdateShippingAddressGiftCard(product);
+        //}
         [HttpGet("/GetShippingUser")]
         public async Task<List<ShippingUserResponse2>> get1()
         {

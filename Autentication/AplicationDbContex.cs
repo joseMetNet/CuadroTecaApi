@@ -1,4 +1,5 @@
 ﻿using fotoTeca.Models;
+using fotoTeca.Models.IMG;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,5 +16,8 @@ namespace fotoTeca.Autentication
         {
 
         }
+
+        public DbSet<IMGdataTable> TB_IMG { get; set; }
+
     }
 }

@@ -11,6 +11,11 @@ namespace fotoTeca.Models.Product
         public string NameProduct { get; set; }
         public string dateAdd { get; set; }
     }
+    public class StatusRequride
+    {
+        public int Status { get; set; }
+        public int IdMercadoPag { get; set; }
+    }
     public class ProductResponseCategory
     {
         public int idCategory { get; set; }
@@ -30,6 +35,8 @@ namespace fotoTeca.Models.Product
         public string cdnUrl { get; set; }
         public string frame { get; set; }
         public string edge { get; set; }
+        public string country { get; set; }
+
 
     }
     public class DataShippingUser

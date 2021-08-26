@@ -30,7 +30,8 @@ namespace fotoTeca.Models.GiftCard
                     cmd.Parameters.Add(new SqlParameter("@pNameGiftCard", Gift.NameGiftCard));
                     cmd.Parameters.Add(new SqlParameter("@pReference", Gift.reference));
                     cmd.Parameters.Add(new SqlParameter("@pValue", Gift.value));
-       
+
+
 
                     var response = new List<GiftCarResponse>();
                     await sql.OpenAsync();
@@ -110,6 +111,101 @@ namespace fotoTeca.Models.GiftCard
             };
 
         }
+        public async Task<List<GiftCarResponse2>> GetGiftCardActive()
+        {
+            using (SqlConnection sql = new SqlConnection(_connectionStrings))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_GetGiftCardActive", sql))
+                {
+
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+
+
+                    var response = new List<GiftCarResponse2>();
+                    await sql.OpenAsync();
+
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            response.Add(MapToValue4(reader));
+                        }
+
+                    }
+
+                    return response;
+                }
+
+            }
+
+        }
+
+        public GiftCarResponse2 MapToValue4(SqlDataReader reader)
+        {
+            return new GiftCarResponse2()
+            {
+                idGiftCard = (int)reader["idGiftCard"],
+                NameGiftCard = reader["NameGiftCard"].ToString(),
+                reference = reader["reference"].ToString(),
+                value = (decimal)reader["value"],
+                idStatusGiftCard = (int)reader["idStatusGiftCard"],
+                Status = reader["Status"].ToString(),
+                dateAdd = reader["dateAdd"].ToString(),
+            };
+
+        }
+
+        public async Task<List<SalesGiftCardResponse>> GetSalesGiftCard()
+        {
+            using (SqlConnection sql = new SqlConnection(_connectionStrings))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_GetSalesGiftCard", sql))
+                {
+
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    var response = new List<SalesGiftCardResponse>();
+                    await sql.OpenAsync();
+
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            response.Add(MapToValue5(reader));
+                        }
+
+                    }
+
+                    return response;
+                }
+
+            }
+
+        }
+
+        public SalesGiftCardResponse MapToValue5(SqlDataReader reader)
+        {
+            return new SalesGiftCardResponse()
+            {
+                idOrder = (int)reader["idOrder"],
+                idGiftCard = reader["idGiftCard"].ToString(),
+                value = reader["value"].ToString(),
+                dateAdd = reader["dateAdd"].ToString(),
+                invoice = reader["invoice"].ToString(),
+                idStatusPayOrder = reader["idStatusPayOrder"].ToString(),
+                FullName = reader["FullName"].ToString(),
+                FullNameAddressee = reader["FullNameAddressee"].ToString(),
+                EamilBuyer = reader["EamilBuyer"].ToString(),
+                EmailAddressee = reader["EmailAddressee"].ToString(),
+                DateExpiration = reader["DateExpiration"].ToString(),
+                currentDate = reader["currentDate"].ToString(),
+                StatusPoll = reader["StatusPoll"].ToString(),
+                surveyResult = reader["surveyResult"].ToString(),
+                StatusEmailSale = reader["StatusEmailSale"].ToString(),
+            };
+
+        }
+
 
         public async Task DeleteGiftCard(int idGiftCard)
         {

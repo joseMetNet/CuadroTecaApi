@@ -46,10 +46,7 @@ namespace fotoTeca.Models.Product
                     cmd.Parameters.Add(new SqlParameter("@cdnUrl", req.cdnUrl)); 
                     cmd.Parameters.Add(new SqlParameter("@frame", req.frame));
                     cmd.Parameters.Add(new SqlParameter("@edge", req.edge));
-
-                    
-
-
+                    cmd.Parameters.Add(new SqlParameter("@pcountry", req.country));
 
                     List<string> ListIdproduct = req.idProduct.Split(',').ToList();
                     List<string> ListTitle = req.title.Split(',').ToList();
@@ -144,13 +141,33 @@ namespace fotoTeca.Models.Product
                 //    em.EnviarCorreo(Cuerpomail, _connectionStrings.ToString(), "Han realizado una nueva compra en la plataforma", row2.email);
                 //}
 
-               
+
 
 
                 return preference;
 
               
             }
+        }
+
+
+        public async Task UpdateStatusOrder(StatusRequride use)
+        {
+            using (SqlConnection sql = new SqlConnection(_connectionStrings))
+
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_UpdateStatusOrder", sql))
+                {
+
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Status", use.Status));
+                    cmd.Parameters.Add(new SqlParameter("@pIdMercadoPago", use.IdMercadoPag));
+                    await sql.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    return;
+                }
+            }
+
         }
         public async Task<List<ProductResponse>> GetProduct(int idProduct = 0)
         {

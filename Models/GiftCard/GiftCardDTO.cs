@@ -25,13 +25,38 @@ namespace fotoTeca.Models.GiftCard
 
 
     }
-    public class GiftCarResqueride 
+
+    public class SalesGiftCardResponse
+    {
+        public int idOrder { get; set; }
+        public string idGiftCard { get; set; }
+        public string value { get; set; }
+        public string dateAdd { get; set; }
+        public string invoice { get; set; }
+
+        public string idStatusPayOrder { get; set; }
+        public string FullName { get; set; }
+        public string FullNameAddressee { get; set; }
+        public string EamilBuyer { get; set; }
+        public string EmailAddressee { get; set; }
+        public string DateExpiration { get; set; }
+        public string currentDate { get; set; }
+        public string StatusPoll { get; set; }
+        public string surveyResult { get; set; }
+        public string StatusEmailSale { get; set; }
+
+
+    }
+
+    public class GiftCarResqueride
     {
         public int idGiftCard { get; set; }
         public string NameGiftCard { get; set; }
         public string reference { get; set; }
         public decimal value { get; set; }
+
     }
+
     public class GiftCarStatusResqueride
     {
         public int idGiftCard { get; set; }

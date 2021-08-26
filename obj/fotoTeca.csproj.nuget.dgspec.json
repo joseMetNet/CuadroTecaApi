@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lordu\\Documents\\development\\.net\\metnet\\cuadroteca\\fotoTeca.csproj": {}
+    "C:\\Users\\User\\source\\repos\\Fototeca\\apiCuadroTeca\\fotoTeca.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lordu\\Documents\\development\\.net\\metnet\\cuadroteca\\fotoTeca.csproj": {
+    "C:\\Users\\User\\source\\repos\\Fototeca\\apiCuadroTeca\\fotoTeca.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lordu\\Documents\\development\\.net\\metnet\\cuadroteca\\fotoTeca.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\Fototeca\\apiCuadroTeca\\fotoTeca.csproj",
         "projectName": "fotoTeca",
-        "projectPath": "C:\\Users\\lordu\\Documents\\development\\.net\\metnet\\cuadroteca\\fotoTeca.csproj",
-        "packagesPath": "C:\\Users\\lordu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lordu\\Documents\\development\\.net\\metnet\\cuadroteca\\obj\\",
+        "projectPath": "C:\\Users\\User\\source\\repos\\Fototeca\\apiCuadroTeca\\fotoTeca.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\Fototeca\\apiCuadroTeca\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\lordu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +29,6 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -38,8 +40,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
             "EntityFramework": {
               "target": "Package",
               "version": "[6.4.4, )"
@@ -59,6 +64,10 @@
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.4, )"
+            },
+            "Microsoft.Azure.Storage.Blob": {
+              "target": "Package",
+              "version": "[11.2.3, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -101,7 +110,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.404\\RuntimeIdentifierGraph.json"
         }
       }
     }

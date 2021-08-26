@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 using fotoTeca.Autentication;
 using fotoTeca.Models;
 using fotoTeca.Models.CitiesAndDepartments;
+using fotoTeca.Models.Dashboard;
 using fotoTeca.Models.GiftCard;
+using fotoTeca.Models.IMG;
 using fotoTeca.Models.Platform;
 using fotoTeca.Models.Product;
 using fotoTeca.Models.ShippingUser;
 using fotoTeca.Models.TypeClient;
 using fotoTeca.Models.User;
+using fotoTeca.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +29,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NegronWebApi.Models.Promotion;
+using NegronWebApi.services;
 
 namespace fotoTeca
 {
@@ -57,8 +61,11 @@ namespace fotoTeca
             services.AddScoped<PromotionDAL>();
             services.AddScoped<GiftCardDAL>();
             services.AddScoped<ProductDAL>();
+            services.AddScoped<IMGDAL>();
+            services.AddScoped<DashboardDAL>();
 
 
+            services.AddTransient<IAlmacenadorArchivos, AlmacenadorArchivosAzure>();
 
 
 
@@ -82,6 +89,8 @@ namespace fotoTeca
             {
                 config.SwaggerDoc("v1", new OpenApiInfo { Version = "v1", Title = "Web API de Fototeca" });
             });
+
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

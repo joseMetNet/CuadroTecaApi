@@ -34,10 +34,13 @@ namespace fotoTeca.Models.ShippingUser
                     cmd.Parameters.Add(new SqlParameter("@pidCity", product.pidCity));
                     cmd.Parameters.Add(new SqlParameter("@pidDepartment", product.pidDepartment));
                     cmd.Parameters.Add(new SqlParameter("@pPhone", product.phone));
-                    cmd.Parameters.Add(new SqlParameter("@pOtherDirections", product.otherDirections));
                     cmd.Parameters.Add(new SqlParameter("@pPresent", product.present));
                     cmd.Parameters.Add(new SqlParameter("@pEmail", product.email));
                     cmd.Parameters.Add(new SqlParameter("@pidProduct", product.idProduct));
+                    cmd.Parameters.Add(new SqlParameter("@pidGiftCard", product.idGiftCard));
+                    cmd.Parameters.Add(new SqlParameter("@pNit", product.Nit));
+
+
 
 
 
@@ -132,6 +135,98 @@ namespace fotoTeca.Models.ShippingUser
 
             };
         }
+
+        //public async Task<List<storeOrUpdateShippingUserGiftCardResponse>> storeOrUpdateShippingUserGiftCard(ShippingUserGiftCardRequeride product)
+        //{
+        //    using (SqlConnection sql = new SqlConnection(_connectionStrings))
+        //    {
+        //        using (SqlCommand cmd = new SqlCommand("SP_storeOrUpdateShippingUserGiftCard", sql))
+        //        {
+
+        //            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        //            if (product.idShippingUserGiftCard != 0) cmd.Parameters.Add(new SqlParameter("@pidShippingUserGiftCard", product.idShippingUserGiftCard));
+        //            cmd.Parameters.Add(new SqlParameter("@pName", product.Name));
+        //            cmd.Parameters.Add(new SqlParameter("@pLastName", product.lastName));
+        //            cmd.Parameters.Add(new SqlParameter("@pTypeHome", product.typeHome));
+        //            cmd.Parameters.Add(new SqlParameter("@pAddress", product.address));
+        //            cmd.Parameters.Add(new SqlParameter("@pidCity", product.idCity));
+        //            cmd.Parameters.Add(new SqlParameter("@pidDepartment", product.idDepartment));
+        //            cmd.Parameters.Add(new SqlParameter("@pEmail", product.email));
+        //            cmd.Parameters.Add(new SqlParameter("@pidGiftCard", product.idGiftCard));
+        
+        //            var response = new List<storeOrUpdateShippingUserGiftCardResponse>();
+        //            await sql.OpenAsync();
+
+        //            using (var reader = await cmd.ExecuteReaderAsync())
+        //            {
+        //                while (await reader.ReadAsync())
+        //                {
+        //                    response.Add(MapToValue4(reader));
+        //                }
+
+        //            }
+
+        //            return response;
+        //        }
+
+        //    }
+
+        //}
+
+        //public storeOrUpdateShippingUserGiftCardResponse MapToValue4(SqlDataReader reader)
+        //{
+        //    return new storeOrUpdateShippingUserGiftCardResponse()
+        //    {
+        //        api_dice = reader["api_dice"].ToString(),
+        //        idShippingUserGiftCard = (int)reader["idShippingUserGiftCard"],
+
+
+        //    };
+        //}
+
+
+        //public async Task<List<ShippingAddressGiftCardResponse>> storeOrUpdateShippingAddressGiftCard(ShippingAddressGiftCardRequeride product)
+        //{
+        //    using (SqlConnection sql = new SqlConnection(_connectionStrings))
+        //    {
+        //        using (SqlCommand cmd = new SqlCommand("SP_storeOrUpdateShippingAddressGiftCard", sql))
+        //        {
+
+        //            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        //            if (product.idShippingUserGiftCard != 0) cmd.Parameters.Add(new SqlParameter("@pidShippingAddressGiftCard", product.idShippingAddressGiftCard));
+        //            cmd.Parameters.Add(new SqlParameter("@pName", product.Name));
+        //            cmd.Parameters.Add(new SqlParameter("@pLastName", product.lastName));
+        //            cmd.Parameters.Add(new SqlParameter("@pEmail", product.email));
+        //            cmd.Parameters.Add(new SqlParameter("@pidShippingUserGiftCard", product.idShippingUserGiftCard));
+   
+        //            var response = new List<ShippingAddressGiftCardResponse>();
+        //            await sql.OpenAsync();
+
+        //            using (var reader = await cmd.ExecuteReaderAsync())
+        //            {
+        //                while (await reader.ReadAsync())
+        //                {
+        //                    response.Add(MapToValue5(reader));
+        //                }
+
+        //            }
+
+        //            return response;
+        //        }
+
+        //    }
+
+        //}
+
+        //public ShippingAddressGiftCardResponse MapToValue5(SqlDataReader reader)
+        //{
+        //    return new ShippingAddressGiftCardResponse()
+        //    {
+        //        api_dice = reader["api_dice"].ToString(),
+        //        idShippingAddressGiftCard = (int)reader["idShippingAddressGiftCard"],
+
+        //    };
+        //}
 
         public async Task<List<ShippingUserResponse2>> GetShippingUser(int idShippingUser = 0)
         {

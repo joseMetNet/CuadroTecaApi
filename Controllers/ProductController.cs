@@ -23,16 +23,23 @@ namespace fotoTeca.Controllers
 
         public ProductController(ProductDAL repository1)
         {
-
             _repository1 = repository1 ?? throw new ArgumentNullException(nameof(repository1));
-
         }
         [HttpPost("/StoreOrder", Name = "StoreOrder")]
         public async Task<Preference> Post1([FromBody] ProductOrderRequeride req)
-
         {
             return await _repository1.StoreOrder(req);
         }
+
+        //[HttpPost("/nada", Name = "nada")]
+
+        //public async Task<string> Post2()
+
+        //{
+        //    var nada = "";
+
+        //    return nada;
+        //}
 
         [HttpGet("/GetProduct")]
         public async Task<List<ProductResponse>> get1()
@@ -49,6 +56,13 @@ namespace fotoTeca.Controllers
         public async Task<List<ProductResponseCategory>> get3()
         {
             return await _repository1.GetCategory();
+        }
+
+        [HttpPut("/UpdateStatusOrder", Name = "UpdateStatusOrder")]
+        public async Task put3([FromBody] StatusRequride use)
+
+        {
+            await _repository1.UpdateStatusOrder(use);
         }
 
     }
