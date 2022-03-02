@@ -30,6 +30,11 @@ namespace fotoTeca.Models.User
         public string email { get; set; }
 
     }
+    public class NewPasswordRequeride
+    {
+        public int idUser { get; set; }
+        public string NewPassword  { get; set; }
+    }
     public class UserResponse 
     {
         public int idUser { get; set; }

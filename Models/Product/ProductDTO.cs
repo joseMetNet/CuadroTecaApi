@@ -13,8 +13,16 @@ namespace fotoTeca.Models.Product
     }
     public class StatusRequride
     {
-        public int Status { get; set; }
-        public int IdMercadoPag { get; set; }
+        public string Status { get; set; }
+        public string IdMercadoPag { get; set; }
+    }
+
+    public class StatusResponse
+    {
+        public int idGiftCard { get; set; }
+        public string codeGitfCard { get; set; }
+
+
     }
     public class ProductResponseCategory
     {
@@ -22,9 +30,18 @@ namespace fotoTeca.Models.Product
         public string NameCategory { get; set; }
     }
 
+    public class directpaymentResponse
+    {
+        public string url { get; set; }
+    }
+
+    public class OrderResponse
+    {
+        public int idOrder { get; set; }
+    }
+
     public class ProductOrderRequeride
     {
-
         public int idShippingUser { get; set; }
         public string idProduct { get; set; }
         public string title { get; set; }
@@ -36,24 +53,52 @@ namespace fotoTeca.Models.Product
         public string frame { get; set; }
         public string edge { get; set; }
         public string country { get; set; }
+        public int idGiftCardUsedForPurchase { get; set; }
+        public string CodeGiftCardUsedForPurchase { get; set; }
+        public int totalPrice { get; set; }
+        public int idPromotion { get; set; }
+        public string editUrl { get; set; }
+        public int balanceTemporary { get; set; }
+        public decimal iva { get; set; }
+        public int priceShipment { get; set; }
+        public string present { get; set; }
 
 
+    }
+    public class ProductOrderRequeride2
+    {
+
+        public int idShippingUser { get; set; }
+        public string idcurrency { get; set; }
+        public string country { get; set; }
+        public string idGiftCard { get; set; }
+        public int totalPrice { get; set; }
+        public int idPromotion { get; set; }
     }
     public class DataShippingUser
     {
         public int idOrder { get; set; }
+        public int idShippingUser { get; set; }
         public string Fullname { get; set; }
         public string email { get; set; }
         public string NameStatus { get; set; }
-
-
+        public string present { get; set; }
     }
-
+    public class DataEmailAddressUser
+    {
+        public string FullName { get; set; }
+        public string email { get; set; }
+    }
     public class DataEmailAdmins
     { 
         public string FullName { get; set; }
         public string email { get; set; }
 
+    }
+
+    public class GitfCard
+    {
+        public string idOrder { get; set; }
     }
     public class PreferenceItemRequestOwn
     {

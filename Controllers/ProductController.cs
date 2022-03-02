@@ -26,20 +26,15 @@ namespace fotoTeca.Controllers
             _repository1 = repository1 ?? throw new ArgumentNullException(nameof(repository1));
         }
         [HttpPost("/StoreOrder", Name = "StoreOrder")]
-        public async Task<Preference> Post1([FromBody] ProductOrderRequeride req)
+        public async Task<object> Post1([FromBody] ProductOrderRequeride req)
         {
             return await _repository1.StoreOrder(req);
         }
-
-        //[HttpPost("/nada", Name = "nada")]
-
-        //public async Task<string> Post2()
-
-        //{
-        //    var nada = "";
-
-        //    return nada;
-        //}
+        [HttpPost("/StoreOrderGiftCard", Name = "StoreOrderGiftCard")]
+        public async Task<Preference> Post2([FromBody] ProductOrderRequeride2 req)
+        {
+            return await _repository1.StoreOrderGiftCard(req);
+        }
 
         [HttpGet("/GetProduct")]
         public async Task<List<ProductResponse>> get1()

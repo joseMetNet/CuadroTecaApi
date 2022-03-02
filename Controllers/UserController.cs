@@ -21,9 +21,7 @@ namespace fotoTeca.Controllers
 
         public UserController(UserDAL repository1)
         {
-
             _repository1 = repository1 ?? throw new ArgumentNullException(nameof(repository1));
-
         }
 
         //POST
@@ -59,6 +57,13 @@ namespace fotoTeca.Controllers
         {
             return await _repository1.GetUsers(pidUser);
         }
-        
+
+        [HttpPut("/NewPassword", Name = "NewPassword")]
+        public async Task put1([FromBody] NewPasswordRequeride us)
+
+        {
+            await _repository1.NewPassword(us);
+        }
+
     }
 }

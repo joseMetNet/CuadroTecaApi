@@ -32,7 +32,6 @@ namespace NegronWebApi.Controllers
 
         //GET-----------------------------------------------------------------------------------------------------------------------------------
 
-
         [HttpGet("/getPromotionType")]
         public async Task<List<PromotionTypeResponse>> get1()
         {
@@ -50,10 +49,22 @@ namespace NegronWebApi.Controllers
             return await _repository1.getPromotion(idPromotion);
 
         }
+        [HttpGet("/getPromotionByCode/{PromotionCode}")]
+        public async Task<Promotion> get222(string PromotionCode)
+        {
+            return await _repository1.getPromotionByCode(PromotionCode);
+
+        }
         [HttpGet("/getStatusPromotion")]
         public async Task<List<StatusPromotionResponse>> get3()
         {
             return await _repository1.getStatusPromotion();
+
+        }
+        [HttpGet("/GetValidPromotions")]
+        public async Task<List<ValidPromotionsResponse>> get4()
+        {
+            return await _repository1.GetValidPromotions();
 
         }
         //PUT--------------------------------------------------------------------------------------------------------------------------------------

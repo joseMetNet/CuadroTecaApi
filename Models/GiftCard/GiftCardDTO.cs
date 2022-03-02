@@ -22,8 +22,19 @@ namespace fotoTeca.Models.GiftCard
         public int  idStatusGiftCard { get; set; }
         public string Status { get; set; }
         public string dateAdd { get; set; }
+        public int IVA { get; set; }
 
 
+
+    }
+    public class GiftCarByCodeResponse
+    {
+        public int idGiftCard { get; set; }
+        public decimal value { get; set; }
+        public string DateExpiration { get; set; }
+        public string idStatusGiftCard { get; set; }
+        public string nameStatus { get; set; }
+        public int balance { get; set; }
     }
 
     public class SalesGiftCardResponse
@@ -35,7 +46,7 @@ namespace fotoTeca.Models.GiftCard
         public string invoice { get; set; }
 
         public string idStatusPayOrder { get; set; }
-        public string FullName { get; set; }
+        public string FullNameBuyer { get; set; }
         public string FullNameAddressee { get; set; }
         public string EamilBuyer { get; set; }
         public string EmailAddressee { get; set; }
@@ -44,7 +55,13 @@ namespace fotoTeca.Models.GiftCard
         public string StatusPoll { get; set; }
         public string surveyResult { get; set; }
         public string StatusEmailSale { get; set; }
-
+        public string NameStatus { get; set; }
+        public string UsedGiftCard { get; set; }
+        public string NamePromotion { get; set; }
+        public string idPromotion { get; set; }
+        public string idStatusOrder { get; set; }
+        public string NameStatusOrder { get; set; }
+        public string typeSale { get; set; }
 
     }
 
@@ -54,7 +71,16 @@ namespace fotoTeca.Models.GiftCard
         public string NameGiftCard { get; set; }
         public string reference { get; set; }
         public decimal value { get; set; }
+        public int IVA { get; set; }
 
+    }
+
+    public class dataPendign
+    {
+        public string email { get; set; }
+        public string nombreResibe { get; set; }
+        public string nombreComprador { get; set; }
+        public string codeGitfCard { get; set; }
     }
 
     public class GiftCarStatusResqueride
@@ -62,4 +88,7 @@ namespace fotoTeca.Models.GiftCard
         public int idGiftCard { get; set; }
         public int idStatus { get; set; }
     }
+
+   
+
 }

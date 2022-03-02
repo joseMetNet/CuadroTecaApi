@@ -34,15 +34,10 @@ namespace fotoTeca.Models.ShippingUser
                     cmd.Parameters.Add(new SqlParameter("@pidCity", product.pidCity));
                     cmd.Parameters.Add(new SqlParameter("@pidDepartment", product.pidDepartment));
                     cmd.Parameters.Add(new SqlParameter("@pPhone", product.phone));
-                    cmd.Parameters.Add(new SqlParameter("@pPresent", product.present));
                     cmd.Parameters.Add(new SqlParameter("@pEmail", product.email));
                     cmd.Parameters.Add(new SqlParameter("@pidProduct", product.idProduct));
                     cmd.Parameters.Add(new SqlParameter("@pidGiftCard", product.idGiftCard));
                     cmd.Parameters.Add(new SqlParameter("@pNit", product.Nit));
-
-
-
-
 
                     //string[] arreglo = product.NameCity.Split(',');
                     //for (int i = 0; i < arreglo.Length; i++)
@@ -272,11 +267,11 @@ namespace fotoTeca.Models.ShippingUser
                 idDepartment = (int)reader["idDepartment"],
                 nameDepartment = reader["nameDepartment"].ToString(),
                 phone = reader["phone"].ToString(),
-                otherDirections = reader["otherDirections"].ToString(),
-                present = reader["present"].ToString(),
                 datetime = reader["datetime"].ToString(),
                 idProduct = (int)reader["idProduct"],
                 email = reader["email"].ToString(),
+                Nit = reader["Nit"].ToString(),
+
             };
         }
     }

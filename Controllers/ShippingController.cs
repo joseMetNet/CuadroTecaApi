@@ -13,7 +13,7 @@ namespace fotoTeca.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ShippingController : ControllerBase
     {
         private readonly ShippingDAL _repository1;

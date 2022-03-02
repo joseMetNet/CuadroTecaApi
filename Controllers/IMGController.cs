@@ -15,7 +15,7 @@ namespace fotoTeca.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class IMGController : ControllerBase
     {
 
@@ -58,6 +58,16 @@ namespace fotoTeca.Controllers
                     entidad.IMG2 = await almacenadorArchivos.GuardarArchivo(contenido, extencion, contenedor, req.IMG2Type2.ContentType);
                 }
             }
+            if (req.IMG2Type3 != null)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await req.IMG2Type3.CopyToAsync(memoryStream);
+                    var contenido = memoryStream.ToArray();
+                    var extencion = Path.GetExtension(req.IMG2Type3.FileName);
+                    entidad.IMG3 = await almacenadorArchivos.GuardarArchivo(contenido, extencion, contenedor, req.IMG2Type3.ContentType);
+                }
+            }
 
             context.Add(entidad);
             await context.SaveChangesAsync();
@@ -82,12 +92,23 @@ namespace fotoTeca.Controllers
         public async Task<List<IMGResponse2>> get2()
         {
             return await _repository1.GetIMGType2();
-
         }
+
         [HttpGet("/GetIMGType2/{idIMG}")]
         public async Task<List<IMGResponse2>> get22(int idIMG)
         {
             return await _repository1.GetIMGType2(idIMG);
+        }
+        [HttpGet("/GetIMGType3")]
+        public async Task<List<IMGResponse33>> get33()
+        {
+            return await _repository1.GetIMGType3();
+        }
+
+        [HttpGet("/GetIMGType3/{idIMG}")]
+        public async Task<List<IMGResponse33>> get333(int idIMG)
+        {
+            return await _repository1.GetIMGType3(idIMG);
         }
         [HttpGet("/GetIMGTotality")]
         public async Task<List<IMGResponse3>> get3()

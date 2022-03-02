@@ -94,6 +94,44 @@ namespace fotoTeca.Models.IMG
             };
         }
 
+        public async Task<List<IMGResponse33>> GetIMGType3(int idIMG = 0)
+        {
+            using (SqlConnection sql = new SqlConnection(_connectionStrings))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_GetIMGType3", sql))
+                {
+
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    if (idIMG != 0) cmd.Parameters.Add(new SqlParameter("@pidIMG", idIMG));
+
+                    var response = new List<IMGResponse33>();
+                    await sql.OpenAsync();
+
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            response.Add(MapToValue33(reader));
+                        }
+
+                    }
+
+                    return response;
+                }
+
+            }
+
+        }
+
+        public IMGResponse33 MapToValue33(SqlDataReader reader)
+        {
+            return new IMGResponse33()
+            {
+                Id = (int)reader["Id"],
+                IMGType3 = reader["IMG3"].ToString(),
+            };
+        }
+
         public async Task<List<IMGResponse3>> GetIMGTotality(int idIMG = 0)
         {
             using (SqlConnection sql = new SqlConnection(_connectionStrings))

@@ -10,6 +10,6 @@ namespace fotoTeca.Models.IMG
         public int Id { get; set; }
         public string IMG1 { get; set; }
         public string IMG2 { get; set; }
-
+        public string IMG3 { get; set; }
     }
 }

@@ -103,4 +103,20 @@ namespace NegronWebApi.Models.Promotion
         public string nameStatus { get; set; }
 
     }
+    public class ValidPromotionsResponse
+    {
+        public int idPromotion { get; set; }
+        public string idProduct { get; set; }
+        public string idCategory { get; set; }
+        public string NamePromotion { get; set; }
+        public string descriptionPromotion { get; set; }
+        public string promotionCode { get; set; }
+        public string condition { get; set; }
+        public string couponAmount { get; set; }
+        public string discountValue { get; set; }
+        public string startDate { get; set; }
+        public string endDate { get; set; }
+        public string idStore { get; set; }
+    }
+
 }

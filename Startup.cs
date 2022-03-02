@@ -87,7 +87,10 @@ namespace fotoTeca
             // se adiciona Swagger para generar la documentacion  de los servicios
             services.AddSwaggerGen(config =>
             {
-                config.SwaggerDoc("v1", new OpenApiInfo { Version = "v1", Title = "Web API de Fototeca" });
+               config.SwaggerDoc("v1", new OpenApiInfo { Version = "v1", Title = "Web API de Fototeca Colombia" });
+              //config.SwaggerDoc("v1", new OpenApiInfo { Version = "v1", Title = "Web API de Fototeca Chile" });
+
+
             });
 
             services.AddAutoMapper(typeof(Startup));
@@ -116,7 +119,9 @@ namespace fotoTeca
             app.UseHttpsRedirection();
             app.UseAuthentication();
 
-            app.UseCors(builder => builder.WithOrigins("https://cuadrotecanueva.azurewebsites.net", "http://localhost:4200").WithMethods("*").WithHeaders("*"));
+            //app.UseCors(builder => builder.WithOrigins("https://fototecapgweb.azurewebsites.net", "http://localhost:4200").WithMethods("*").WithHeaders("*"));
+            app.UseCors(builder => builder.WithOrigins("https://lacuadroteca.com", "http://localhost:4200", "https://fototecapgweb.azurewebsites.net").WithMethods("*").WithHeaders("*"));
+
 
             app.UseHttpsRedirection();
 

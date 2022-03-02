@@ -1,6 +1,7 @@
 ﻿using fotoTeca.Data;
 using fotoTeca.Email;
 using Microsoft.Extensions.Configuration;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -39,9 +40,9 @@ namespace fotoTeca.Models.User
                     Byte[] contrasenaEncriptada = acceso.EncryptStringToBytes(passNew, myRijndael.Key, myRijndael.IV);
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@pEmail", password.email));
-                    cmd.Parameters.Add(new SqlParameter("@pPassword", contrasenaEncriptada));
-                    cmd.Parameters.Add(new SqlParameter("@pkey", myRijndael.Key));
-                    cmd.Parameters.Add(new SqlParameter("@pIv", myRijndael.IV));
+                    //cmd.Parameters.Add(new SqlParameter("@pPassword", contrasenaEncriptada));
+                    //cmd.Parameters.Add(new SqlParameter("@pkey", myRijndael.Key));
+                    //cmd.Parameters.Add(new SqlParameter("@pIv", myRijndael.IV));
                     //string textocifrado = _protector.Unprotect(user.password);
 
                     await sql.OpenAsync();
@@ -61,17 +62,56 @@ namespace fotoTeca.Models.User
                     }
                    
                 }
+
+                string palabraCortada = Strings.Right(pass.email, 15);
+
+                string url = "https://fototecapgweb.azurewebsites.net" + "/#/auth/restore-password/" + pass.idUser.ToString();
+
+                
+
                 string Cuerpomail = "";
                 if (pass.idUser > 0)
                 {
                 EnviarEMail em = new EnviarEMail();
-                Cuerpomail = em.cuerpoRecuperarContraseña(pass.firstName, passNew);
-                em.EnviarCorreo(Cuerpomail, _connectionStrings.ToString(),"Cambio de contraseña", pass.email);
+                Cuerpomail = em.cuerpoRecuperarContraseña(pass.firstName, passNew, palabraCortada, pass.idUser.ToString(), url);
+                em.EnviarCorreo(Cuerpomail, _connectionStrings.ToString(), "Restablecimiento de contraseña en La Cuadroteca", pass.email);
                 }
 
                 return pass;
             }
         }
+
+        public async Task NewPassword(NewPasswordRequeride use)
+        {
+            using (SqlConnection sql = new SqlConnection(_connectionStrings))
+
+            {
+
+                using (SqlCommand cmd = new SqlCommand("SP_NewPassword", sql))
+                {
+                    CredencialesDeAcceso acceso = new CredencialesDeAcceso();
+                    //string contrasena = acceso.creacionContrasena();
+                    RijndaelManaged myRijndael = new RijndaelManaged();
+                    myRijndael.GenerateKey();
+                    myRijndael.GenerateIV();
+                    Byte[] contrasenaEncriptada = acceso.EncryptStringToBytes(use.NewPassword, myRijndael.Key, myRijndael.IV);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@pidUser", use.idUser));
+                    cmd.Parameters.Add(new SqlParameter("@pPassword", contrasenaEncriptada));
+                    cmd.Parameters.Add(new SqlParameter("@pkey", myRijndael.Key));
+                    cmd.Parameters.Add(new SqlParameter("@pIv", myRijndael.IV));
+
+
+
+                    await sql.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    return;
+                }
+            }
+
+        }
+
+
         public async Task<List<UserResponse>> StoreOrUpdateUser(UserDTOrequired user)
         {
             using (SqlConnection sql = new SqlConnection(_connectionStrings))

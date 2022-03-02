@@ -50,6 +50,38 @@ namespace NegronWebApi.Models.Promotion
             }
 
         }
+        public async Task storeOrUpdatePromotionChile (PromotionRequeride req)
+        {
+            using (SqlConnection sql = new SqlConnection(_connectionStrings))
+
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_storeOrUpdatePromotion", sql))
+                {
+
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    if (req.idPromotion != 0) cmd.Parameters.Add(new SqlParameter("@pidPromotion", req.idPromotion));
+                    cmd.Parameters.Add(new SqlParameter("@pidPromotionType", req.idPromotionType));
+                    cmd.Parameters.Add(new SqlParameter("@pidProduct", req.idProduct));
+                    cmd.Parameters.Add(new SqlParameter("@pidCategory", req.idCategory));
+                    cmd.Parameters.Add(new SqlParameter("@pNamePromotion", req.NamePromotion));
+                    cmd.Parameters.Add(new SqlParameter("@pDescriptionPromotion", req.descriptionPromotion));
+                    cmd.Parameters.Add(new SqlParameter("@pPromotionCode", req.promotionCode));
+                    cmd.Parameters.Add(new SqlParameter("@pCondition", req.condition));
+                    cmd.Parameters.Add(new SqlParameter("@pCouponAmount", req.couponAmount));
+                    cmd.Parameters.Add(new SqlParameter("@pDiscountValue", req.discountValue));
+                    cmd.Parameters.Add(new SqlParameter("@pStartDate", req.startDate));
+                    cmd.Parameters.Add(new SqlParameter("@pEndDate", req.endDate));
+                    cmd.Parameters.Add(new SqlParameter("@pNameCitysPromotion", req.idCitysPromotion));
+                    cmd.Parameters.Add(new SqlParameter("@pidStore", req.idStore));
+
+
+                    await sql.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    return;
+                }
+            }
+
+        }
 
         public async Task<List<PromotionTypeResponse>> getPromotionType()
         {
@@ -175,15 +207,6 @@ namespace NegronWebApi.Models.Promotion
             }
 
         }
-        //SELECT
-        //           ci.idCity
-
-        //           cy, city
-
-        //          FROM TB_promotion as qq
-        //          LEFT JOIN TB_CitiesPromotion AS ci On ci.idPromotion = qq.idPromotion
-
-        //          LEFT JOIN TB_City AS cy On cy.idCity = ci.idCity
         public PromotionResponse MapToValue2(SqlDataReader reader)
         {
             return new PromotionResponse()
@@ -213,6 +236,91 @@ namespace NegronWebApi.Models.Promotion
 
             };
         }
+        public async Task<Promotion> getPromotionByCode(string PromotionCode )
+        {
+            using (SqlConnection sql = new SqlConnection(_connectionStrings))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_getPromotionByCode", sql))
+                {
+
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@PromotionCode", PromotionCode));
+
+
+                    var response = new List<PromotionResponse>();
+                    await sql.OpenAsync();
+
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            response.Add(MapToValue2(reader));
+
+                        }
+
+                    }
+
+                    response = response.OrderBy(e => e.idPromotion).ToList();
+                    var result = new Promotion();
+                    result.ListPromotion = new List<PromotionResponseUnit>();
+                    int idPromotioN = 0;
+                    int idPromotionAnt = 0;
+                    for (int i = 0; i < response.Count; i++)
+                    {
+                        PromotionResponse row = response[i];
+                        idPromotioN = row.idPromotion;
+                        var objform = new PromotionResponseUnit();
+                        objform.idPromotion = row.idPromotion;
+                        objform.idPromotionType = row.idPromotionType;
+                        objform.NamePromotionType = row.NamePromotionType;
+                        objform.idProduct = row.idProduct;
+                        objform.NameProduct = row.NameProduct;
+                        objform.idCategory = row.idCategory;
+                        objform.NameCategory = row.NameCategory;
+                        objform.NamePromotion = row.NamePromotion;
+                        objform.descriptionPromotion = row.descriptionPromotion;
+                        objform.promotionCode = row.promotionCode;
+                        objform.condition = row.condition;
+                        objform.couponAmount = row.couponAmount;
+                        objform.discountValue = row.discountValue;
+                        objform.startDate = row.startDate;
+                        objform.endDate = row.endDate;
+                        objform.idStatusPromotion = row.idStatusPromotion;
+                        objform.nameStatus = row.nameStatus;
+                        objform.dateAdd = row.dateAdd;
+                        objform.idStore = row.idStore;
+                        objform.country = row.country;
+
+
+
+                        objform.ListCities = new List<DescriptionCities>();
+                        if (idPromotioN != idPromotionAnt)
+                        {
+                            foreach (PromotionResponse row2 in response)
+                            {
+                                if (row.idPromotion == row2.idPromotion)
+                                {
+                                    objform.ListCities.Add(
+                                        new DescriptionCities
+                                        {
+                                            idCity = row2.idCity,
+                                            City = row2.City,
+
+                                        }
+                                    );
+                                }
+                            }
+                            result.ListPromotion.Add(objform);
+                        }
+                        idPromotionAnt = row.idPromotion;
+                    }
+                    return result;
+                }
+
+            }
+
+        }
+   
 
         public async Task<List<StatusPromotionResponse>> getStatusPromotion()
         {
@@ -250,6 +358,53 @@ namespace NegronWebApi.Models.Promotion
                 idStatusPromotion = (int)reader["idStatusPromotion"],
                 nameStatus = reader["nameStatus"].ToString(),
 
+            };
+        }
+        public async Task<List<ValidPromotionsResponse>> GetValidPromotions()
+        {
+            using (SqlConnection sql = new SqlConnection(_connectionStrings))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_GetValidPromotions", sql))
+                {
+
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+
+
+                    var response = new List<ValidPromotionsResponse>();
+                    await sql.OpenAsync();
+
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            response.Add(MapToValue4(reader));
+                        }
+
+                    }
+
+                    return response;
+                }
+
+            }
+
+        }
+        public ValidPromotionsResponse MapToValue4(SqlDataReader reader)
+        {
+            return new ValidPromotionsResponse()
+            {
+                idPromotion = (int)reader["idPromotion"],
+                idProduct = reader["idProduct"].ToString(),
+                idCategory = reader["idCategory"].ToString(),
+                NamePromotion = reader["NamePromotion"].ToString(),
+                descriptionPromotion = reader["descriptionPromotion"].ToString(),
+                promotionCode = reader["promotionCode"].ToString(),
+                condition = reader["condition"].ToString(),
+                couponAmount = reader["couponAmount"].ToString(),
+                discountValue = reader["discountValue"].ToString(),
+                startDate = reader["startDate"].ToString(),
+                endDate = reader["endDate"].ToString(),
+                idStore = reader["idStore"].ToString(),
             };
         }
 

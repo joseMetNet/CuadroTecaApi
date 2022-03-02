@@ -15,7 +15,6 @@ namespace fotoTeca.Models.ShippingUser
         public int pidCity { get; set; }
         public int pidDepartment { get; set; }
         public string phone { get; set; }
-        public string present { get; set; }
         public string email { get; set; }
         public int idProduct { get; set; }
         public int idGiftCard { get; set; }
@@ -73,11 +72,11 @@ namespace fotoTeca.Models.ShippingUser
         public int idDepartment { get; set; }
         public string nameDepartment { get; set; }
         public string phone { get; set; }
-        public string otherDirections { get; set; }
-        public string present { get; set; }
         public string datetime { get; set; }
         public int idProduct { get; set; }
         public string email { get; set; }
+        public string Nit { get; set; }
+
 
     }
     public class ShippingAddressRequeride

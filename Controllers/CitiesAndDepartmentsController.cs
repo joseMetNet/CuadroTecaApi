@@ -21,12 +21,31 @@ namespace fotoTeca.Controllers
             _repository1 = repository1 ?? throw new ArgumentNullException(nameof(repository1));
 
         }
+        [HttpGet("/getUbication/{ip}")]
+        public  async Task<apiCitiesResponse> Get01(string ip)
+        {
+            return await _repository1.ubication(ip);
+
+        }
         [HttpGet("/getCities")]
         public async Task<List<CitiesResponse>> Get1()
         {
             return await _repository1.getCities();
 
         }
+        //[HttpGet("/GetComuna")]
+        //public async Task<List<ComunaResponse>> Get11()
+        //{
+        //    return await _repository1.GetComuna();
+
+        //}
+
+        //[HttpGet("/GetRegion")]
+        //public async Task<List<RegionResponse>> Get111()
+        //{
+        //    return await _repository1.GetRegion();
+
+        //}
         [HttpGet("/getDepartments")]
         public async Task<List<DepartmentsResponse>> Get2()
         {
@@ -39,6 +58,12 @@ namespace fotoTeca.Controllers
             return await _repository1.GetDepartmentByCities(idCity);
 
         }
+        //[HttpGet("/GetComunaByidregion/{idRegion}")]
+        //public async Task<List<GetComunaByidregionResponse>> Get33(int idRegion)
+        //{
+        //    return await _repository1.GetComunaByidregion(idRegion);
+
+        //}
         [HttpGet("/GetCitiesByDepartment/{idDepartment}")]
         public async Task<List<GetDepartmentCitiesResponse>> Get4(int idDepartment)
         {
@@ -50,6 +75,25 @@ namespace fotoTeca.Controllers
         {
             return await _repository1.GetCitiesByStore(idStore);
 
+        }
+        [HttpGet("/GetCountry")]
+        public async Task<List<GetCountryResponse>> Get6()
+        {
+            return await _repository1.GetCountry();
+
+        }
+        [HttpGet("/GetCountry/{idCountry}")]
+        public async Task<List<GetCountryResponse>> Get7(int idCountry)
+        {
+            return await _repository1.GetCountry(idCountry);
+
+        }
+
+        [HttpPost("/zoho", Name = "zoho")]
+        public async Task put3([FromForm] zohoRequeride us)
+
+        {
+            await _repository1.zoho(us);
         }
     }
 }

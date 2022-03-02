@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using fotoTeca.Email;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -30,6 +31,8 @@ namespace fotoTeca.Models.GiftCard
                     cmd.Parameters.Add(new SqlParameter("@pNameGiftCard", Gift.NameGiftCard));
                     cmd.Parameters.Add(new SqlParameter("@pReference", Gift.reference));
                     cmd.Parameters.Add(new SqlParameter("@pValue", Gift.value));
+                    cmd.Parameters.Add(new SqlParameter("@pIVA", Gift.IVA));
+
 
 
 
@@ -108,6 +111,53 @@ namespace fotoTeca.Models.GiftCard
                 idStatusGiftCard = (int)reader["idStatusGiftCard"],
                 Status = reader["Status"].ToString(),
                 dateAdd = reader["dateAdd"].ToString(),
+                IVA = (int)reader["IVA"],
+
+            };
+
+        }
+
+        public async Task<List<GiftCarByCodeResponse>> getGiftCardBycode(string CodeGitfCard )
+        {
+            using (SqlConnection sql = new SqlConnection(_connectionStrings))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_getGiftCardBycode", sql))
+                {
+
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@pCodeGitfCard", CodeGitfCard));
+
+
+
+                    var response = new List<GiftCarByCodeResponse>();
+                    await sql.OpenAsync();
+
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            response.Add(MapToValues(reader));
+                        }
+
+                    }
+
+                    return response;
+                }
+
+            }
+
+        }
+
+        public GiftCarByCodeResponse MapToValues(SqlDataReader reader)
+        {
+            return new GiftCarByCodeResponse()
+            {
+                idGiftCard = (int)reader["idGiftCard"],
+                value = (decimal)reader["value"],
+                DateExpiration = reader["DateExpiration"].ToString(),
+                idStatusGiftCard = reader["idStatusGiftCard"].ToString(),
+                nameStatus = reader["nameStatus"].ToString(),
+                balance = (int)reader["balance"],
             };
 
         }
@@ -193,7 +243,7 @@ namespace fotoTeca.Models.GiftCard
                 dateAdd = reader["dateAdd"].ToString(),
                 invoice = reader["invoice"].ToString(),
                 idStatusPayOrder = reader["idStatusPayOrder"].ToString(),
-                FullName = reader["FullName"].ToString(),
+                FullNameBuyer = reader["FullNameBuyer"].ToString(),
                 FullNameAddressee = reader["FullNameAddressee"].ToString(),
                 EamilBuyer = reader["EamilBuyer"].ToString(),
                 EmailAddressee = reader["EmailAddressee"].ToString(),
@@ -202,6 +252,15 @@ namespace fotoTeca.Models.GiftCard
                 StatusPoll = reader["StatusPoll"].ToString(),
                 surveyResult = reader["surveyResult"].ToString(),
                 StatusEmailSale = reader["StatusEmailSale"].ToString(),
+                NameStatus = reader["NameStatus"].ToString(),
+                UsedGiftCard = reader["UsedGiftCard"].ToString(),
+                NamePromotion = reader["NamePromotion"].ToString(),
+                idPromotion = reader["idPromotion"].ToString(),
+                idStatusOrder = reader["idStatusOrder"].ToString(),
+                NameStatusOrder = reader["NameStatusOrder"].ToString(),
+                typeSale = reader["typeSale"].ToString(),
+
+
             };
 
         }
@@ -246,6 +305,59 @@ namespace fotoTeca.Models.GiftCard
                     return;
                 }
             }
+
+        }
+
+        public async Task GetPendingToUseGiftCard()
+        {
+            
+                using (SqlConnection sql = new SqlConnection(_connectionStrings))
+                {   
+
+                    List<dataPendign> EmailAdmins = new List<dataPendign>();
+                    using (SqlCommand cmd = new SqlCommand("SP_GetPendingToUseGiftCard", sql))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        await sql.OpenAsync();
+
+
+                    //await sql.OpenAsync();
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                        {
+                            while (await reader.ReadAsync())
+                            {
+                                EmailAdmins.Add(new dataPendign
+                                {
+                                    email = reader["email"].ToString()
+                                    ,
+                                    nombreResibe = reader["nombreResibe"].ToString()
+                                    ,
+                                    nombreComprador = reader["nombreComprador"].ToString()
+                                    ,
+                                    codeGitfCard = reader["codeGitfCard"].ToString()
+
+                                });
+                            }
+                        
+
+                        }
+                    }
+
+                    string Cuerpomail = "";
+                    EnviarEMail em = new EnviarEMail();
+
+                    
+       
+                    foreach (dataPendign row2 in EmailAdmins)
+                    {
+                        Cuerpomail = em.emailPendingToUseGiftCard(row2.nombreResibe, row2.nombreComprador, row2.codeGitfCard);
+                        em.EnviarCorreo(Cuerpomail, _connectionStrings.ToString(), "Han realizado un cambio de estado en un producto en la plataforma", row2.email);
+                    }
+                }
+            
+
+
+            return;
 
         }
     }

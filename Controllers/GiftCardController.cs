@@ -30,6 +30,7 @@ namespace fotoTeca.Controllers
         {
             return await _repository1.storeOrUpdateGiftCard(user);
         }
+
         //GET-------------------------------------------------------------------------------------------------
         [HttpGet("/GetGiftCard")]
         public async Task<List<GiftCarResponse2>> get1()
@@ -43,6 +44,8 @@ namespace fotoTeca.Controllers
             return await _repository1.GetGiftCard(idGiftCard);
         }
 
+      
+
         [HttpGet("/GetGiftCardActive")]
         public async Task<List<GiftCarResponse2>> get3()
         {
@@ -54,6 +57,21 @@ namespace fotoTeca.Controllers
         {
             return await _repository1.GetSalesGiftCard();
         }
+
+        [HttpGet("/getGiftCardBycode/{CodeGitfCard}")]
+        public async Task<List<GiftCarByCodeResponse>> get5(string CodeGitfCard)
+        {
+            return await _repository1.getGiftCardBycode(CodeGitfCard);
+        }
+
+
+        [HttpGet("/GetPendingToUseGiftCard", Name = "GetPendingToUseGiftCard")]
+        public async Task put2()
+
+        {
+            await _repository1.GetPendingToUseGiftCard();
+        }
+
         //DELETE------------------------------------------------------------------------------------------------
         [HttpDelete("DeleteGiftCard/{idGiftCard}", Name = "DeleteClient")]
         public async Task Delete(int idGiftCard)

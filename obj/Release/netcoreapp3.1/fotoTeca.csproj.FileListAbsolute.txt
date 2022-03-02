@@ -187,3 +187,10 @@ C:\Users\User\source\repos\Fototeca\apiCuadroTeca\bin\Release\netcoreapp3.1\Auto
 C:\Users\User\source\repos\Fototeca\apiCuadroTeca\bin\Release\netcoreapp3.1\Microsoft.Azure.KeyVault.Core.dll
 C:\Users\User\source\repos\Fototeca\apiCuadroTeca\bin\Release\netcoreapp3.1\Microsoft.Azure.Storage.Blob.dll
 C:\Users\User\source\repos\Fototeca\apiCuadroTeca\bin\Release\netcoreapp3.1\Microsoft.Azure.Storage.Common.dll
+C:\Users\User\source\repos\Fototeca\apiCuadroTeca\bin\Release\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\User\source\repos\Fototeca\apiCuadroTeca\bin\Release\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+C:\Users\User\source\repos\Fototeca\apiCuadroTeca\bin\Release\netcoreapp3.1\Microsoft.Extensions.PlatformAbstractions.dll
+C:\Users\User\source\repos\Fototeca\apiCuadroTeca\bin\Release\netcoreapp3.1\Nancy.dll
+C:\Users\User\source\repos\Fototeca\apiCuadroTeca\bin\Release\netcoreapp3.1\RestSharp.dll
+C:\Users\User\source\repos\Fototeca\apiCuadroTeca\bin\Release\netcoreapp3.1\BouncyCastle.Crypto.dll
+C:\Users\User\source\repos\Fototeca\apiCuadroTeca\bin\Release\netcoreapp3.1\itextsharp.dll

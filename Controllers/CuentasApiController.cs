@@ -37,7 +37,7 @@ namespace fotoTeca.Controllers
         }
 
         [HttpPost("Crear")]
-        [ApiExplorerSettings(IgnoreApi = true)]
+        //[ApiExplorerSettings(IgnoreApi = true)]
         public async Task<ActionResult<UserToken>> CreateUser([FromBody] UserInfo model)
         {
             var user = new AplicationUser { UserName = model.Email, Email = model.Email };
@@ -52,7 +52,17 @@ namespace fotoTeca.Controllers
             }
 
         }
-        [HttpPost("Actualizar")]
+
+//        {
+//  "email": "adminTeca@gmail.com",
+//  "password": "Qwer1234!"
+//}
+
+//        {
+//  "email": "adminTC@gmail.com",
+//  "password": "AaSD12!23"
+//}
+    [HttpPost("Actualizar")]
         //[ApiExplorerSettings(IgnoreApi = true)]
         public async Task<ActionResult<UserToken>> UpdateUser([FromBody] UserInfoUpdate model)
         {

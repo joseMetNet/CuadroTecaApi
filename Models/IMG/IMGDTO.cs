@@ -10,6 +10,8 @@ namespace fotoTeca.Models.IMG
     {
         public IFormFile IMGType1 { get; set; }
         public IFormFile IMG2Type2 { get; set; }
+        public IFormFile IMG2Type3 { get; set; }
+
 
     }
     public class IMGResponse
@@ -24,11 +26,21 @@ namespace fotoTeca.Models.IMG
         public string IMGType2 { get; set; }
 
     }
+
+    public class IMGResponse33
+    {
+        public int Id { get; set; }
+        public string IMGType3 { get; set; }
+
+    }
     public class IMGResponse3
     {
         public int Id { get; set; }
         public string IMGType1 { get; set; }
         public string IMGType2 { get; set; }
+        //public string IMGType3 { get; set; }
 
     }
+
+
 }
